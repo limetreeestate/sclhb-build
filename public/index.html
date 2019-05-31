@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SocialHub</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!--Import Google Icon Font-->
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <!--Import materialize.css-->
+  <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/> -->
+  <!--Let browser know website is optimized for mobile-->
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
+  
+<link rel="stylesheet" href="styles.c1e8eb593266297f7140.css"></head>
+<body>
+  <app-root></app-root>
+<script type="text/javascript" src="runtime.a5dd35324ddfd942bef1.js"></script><script type="text/javascript" src="polyfills.46532d96d3286697c138.js"></script><script type="text/javascript" src="main.2bcdd932d19b3961fa6c.js"></script></body>
+</html>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=380519256063506&autoLogAppEvents=1"></script>
+<script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script>
+  var GoogleAuth;
+  var SCOPE = 'https://www.googleapis.com/auth/readonly';
+  function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    gapi.load('client:auth2', initClient);
+  }
+
+  function initClient() {
+    // Retrieve the discovery document for version 3 of YouTube Data API.
+    // In practice, your app can retrieve one or more discovery documents.
+    var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
+
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    const config = {
+      'apiKey': 'AIzaSyDuLRdU5WqZ9u6Hr_dR9blraG1MKn_BoI0',
+      'clientId': '215570320494-glh46fvgrm5fuqd5897jejg1vff407mf.apps.googleusercontent.com',
+      'scope': 'https://www.googleapis.com/auth/youtube.readonly',
+      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest']
+    }
+
+    //Initialize Google API client object
+    gapi.client.init(config).then(function () {
+      GoogleAuth = gapi.auth2.getAuthInstance();
+
+      // Listen for sign-in state changes.
+      GoogleAuth.isSignedIn.listen(res => console.log(res));
+
+      // Handle initial sign-in state. (Determine if user is already signed in.)
+      var user = GoogleAuth.currentUser.get();
+      console.log(user)
+
+    });
+  }
+</script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script  src="https://apis.google.com/js/api.js" 
+        onload="this.onload=function(){};handleClientLoad()" 
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
